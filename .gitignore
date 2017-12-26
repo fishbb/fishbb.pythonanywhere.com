@@ -9,6 +9,7 @@ local_settings.py
 __pycache__
 /advancedcat
 /calendars
-/mysite
+/mysite/*
 requirements.txt
+!/mysite/github_*
 
