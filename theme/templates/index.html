@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n staticfiles %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+<link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/bootstrap-rtl.css" %}">
+{% endif %}
+{% ifinstalled cartridge.shop %}
+<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+{% endif %}
+
+{% endifinstalled %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "/css/dlou.css" %}">
+{% endblock %}
+{% endcompress %}
+
+{% compress js %}
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/bootstrap-extras.js" %}"></script>
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">{% trans "Toggle Navigation" %}</span>
+                                    <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                        </button>
+  {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+
+
+                                                    </div>
+                                                    <div class="navbar-collapse collapse">
+                                                         <ul class="nav navbar-nav">
+                                                                  {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
+                                                                   </ul>
+                                                                   <ul class="nav navbar-nav navbar-right">
+                                                                   </ul>
+                                                               </div>
+                                                           </div>
+</div>
+
+<div class="container"></div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <!--<div class="container">-->
+            <div class="carousel-caption">
+              <h1>Welcome!</h1>
+              <p>This is a place to share tips for library web management, user experience, related technologies and cool applications.</p>
+              <p><a class="btn btn-lg btn-primary" href="/blog" role="button">Read Blog</a></p>
+            </div>
+          <img class="first-slide" src="{% static 'media/uploads/anim.gif' %}" alt="First slide">
+          <!--</div>-->
+        </div>
+        <div class="item">
+          <!--<div class="container">-->
+            <div class="carousel-caption">
+              <h1>Add a Modern Date Picker on Your Website</h1>
+              <p>How to add and customize a date picker on the patron self registration page, or any page on your website.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          <img class="first-slide" src="{% static 'media/uploads/anim.gif' %}" alt="First slide">
+          <!--</div>-->
+        </div>
+        <div class="item">
+          <!--<div class="container">-->
+            <div class="carousel-caption">
+              <h1>A New Catalog System</h1>
+              <p>A new catalog system is under development. Contact us for more information</p>
+              <p><a class="btn btn-lg btn-primary" href="mailto:loudan@protonmail.com" role="button">Contact</a></p>
+            </div>
+          <img class="first-slide" src="{% static 'media/uploads/anim.gif' %}" alt="First slide">
+          <!--</div>-->
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+</div>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <!--<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">-->
+          <img class="img-circle" src="{% static 'media/uploads/circle.png' %}" alt="Generic placeholder image" width="140" height="140">
+          <h2>Blog</h2>
+          <p>Share technology tips with libraries.</p>
+          <p><a class="btn btn-default" href="/blog" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-md-6 text-center">
+          <img class="img-circle" src="{% static 'media/uploads/circle.png' %}" alt="Generic placeholder image" width="140" height="140">
+          <h2>Projects</h2>
+          <p>Inspiring library projects developed by me or others.</p>
+          <p><a class="btn btn-default" href="/projects" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <!--<div class="col-lg-4">-->
+        <!--  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">-->
+        <!--  <h2>Heading</h2>-->
+        <!--  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>-->
+        <!--  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+
+      <!-- START THE FEATURETTES -->
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <h2 class="featurette-heading">Talks of the Library <span class="text-muted">#library #technology</span></h2>
+          <p class="lead">Keep up with the ever-evolving library world.</p>
+        </div>
+        <div class="col-md-7">
+          <!--<img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
+  {% include "twitter/tweets.html" %}
+        </div>
+      </div>
+      <hr class="featurette-divider">
+
+      <!--<div class="row featurette">-->
+      <!--  <div class="col-md-7">-->
+      <!--    <h2 class="featurette-heading">Web Interface <span class="text-muted">It'll blow your mind.</span></h2>-->
+      <!--    <p class="lead">It is really easy to modernize your library's website with Bootstrap and JQuery.</p>-->
+      <!--  </div>-->
+      <!--  <div class="col-md-5">-->
+      <!--    <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
+      <!--  </div>-->
+      <!--</div>-->
+
+      <!--<hr class="featurette-divider">-->
+
+      <!--<div class="row featurette">-->
+      <!--  <div class="col-md-7 col-md-push-5">-->
+      <!--    <h2 class="featurette-heading">Robots <span class="text-muted">Are you ready for the challenge?</span></h2>-->
+      <!--    <p class="lead">Lessons learned on how to introduce and tame a robot.</p>-->
+      <!--  </div>-->
+      <!--  <div class="col-md-5 col-md-pull-7">-->
+      <!--    <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
+      <!--  </div>-->
+      <!--</div>-->
+
+      <!--<hr class="featurette-divider">-->
+
+      <!--<div class="row featurette">-->
+      <!--  <div class="col-md-7">-->
+      <!--    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>-->
+      <!--    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>-->
+      <!--  </div>-->
+      <!--  <div class="col-md-5">-->
+      <!--    <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
+      <!--  </div>-->
+      <!--</div>-->
+
+      <!--<hr class="featurette-divider">-->
+
+      <!-- /END THE FEATURETTES -->
+</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div>
+<footer>
+    <div class="container">
+        {% page_menu "pages/menus/footer.html" %}
+
+        <div class="row">
+            <p class="site-info text-center">
+            {% trans "Developed by" %}
+            <a target="_blank" href="http://fishbb.github.io">{% trans "Dan Lou" %}</a>
+            <span class="separator">|</span>
+             <a target="_blank" href="mailto:loudan@protonmail.com">{% trans "Contact" %}</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+{% block footer_js %}
+{% include "includes/footer_scripts.html" %}
+{% endblock %}
+
+</body>
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </html>

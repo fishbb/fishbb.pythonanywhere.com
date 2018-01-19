@@ -31,7 +31,7 @@
 {% endifinstalled %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static "theme/css/dlou.css" %}">
+<link rel="stylesheet" href="{% static "css/dlou.css" %}">
 {% endblock %}
 {% endcompress %}
 
@@ -62,25 +62,12 @@
         <span class="icon-bar"></span>
     </button>
 
- 
+
 </div>
-<div class="navbar-collapse collapse">     
- <ul class="nav navbar-nav">  
+<div class="navbar-collapse collapse">
+ <ul class="nav navbar-nav">
      {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
- </ul> 
-      
-<ul class="nav navbar-nav navbar-right">
-         {% if not user.is_authenticated %}
-            <li ><a href="{% url 'login' %}">Login</a></li>
-        {% else %}            
-            <li class="dropdown"><a>{{ user.get_username }}</a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'profile' username=user.username %}">My Account</a></li> 
-                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
-            </ul>
-            </li>
-        {% endif %}
-</ul>
+ </ul>
 
 </div>
 
@@ -103,7 +90,7 @@
 {% endif %}
 {% endnevercache %}
 
-<p>        
+<p>
 {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
 
 <p>
@@ -126,16 +113,16 @@
 
 <div class="col-md-2 left">
     {% block left_panel %}
-    
+
     {% page_menu "pages/menus/tree.html" %}
 
     {% endblock %}
-    
+
 </div>
 
 <div class="col-md-7 middle">
     {% block main %}{% endblock %}
-    
+
 {% block pagination %}
   {% if is_paginated %}
   <div class="text-center">
@@ -146,9 +133,9 @@
     <span aria-hidden="true">&laquo;</span>
     <span class="sr-only">begin</span>
      </a>
-    </li>   
+    </li>
     {% endif %}
-    
+
     {% for n in page_obj.paginator.page_range %}
     {% if page_obj.number == n %}
       <li class="page-item active">
@@ -166,20 +153,18 @@
         <span class="sr-only">end</span>
         </a>
     </li>
-    {% endif %}   
+    {% endif %}
   </ul>
   </div>
  {% endif %}
-{% endblock %}    
+{% endblock %}
 </div>
 
 <div class="col-md-3 right">
-    {% nevercache %}
-    {% include "includes/language_selector.html" %}
-    {% include "includes/user_panel.html" %}
-    {% endnevercache %}
+    <!--{% nevercache %}-->
+    <!--{% include "includes/user_panel.html" %}-->
+    <!--{% endnevercache %}-->
 
-<!-- 
     {% ifinstalled mezzanine.twitter %}
     <div class="panel panel-default">
     <div class="panel-body">
@@ -187,9 +172,8 @@
     {% include "twitter/tweets.html" %}
         {% endblock %}
     </div>
-    </div>        
+    </div>
     {% endifinstalled %}
- -->
 
 </div>
 
@@ -205,9 +189,9 @@
 <div class="row">
 <p class="site-info text-center">
     {% trans "Developed by" %}
-    <a target="_blank" href="http://fishbb.github.io">Dan Lou</a>
+    <a target="_blank" href="http://fishbb.github.io">{% trans "Dan Lou" %}</a>
     <span class="separator">|</span>
-    {% trans "Contact" %} <a target="_blank" href="mailto:loudan@protonmail.com">Email</a>
+     <a target="_blank" href="mailto:loudan@protonmail.com">{% trans "Contact" %}</a>
 </p>
 </div>
 </div>

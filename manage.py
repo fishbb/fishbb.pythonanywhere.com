@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/fishbb/.virtualenvs/mezzanine/bin/python
 import os
 import sys
 
