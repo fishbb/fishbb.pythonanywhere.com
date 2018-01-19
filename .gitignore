@@ -3,7 +3,12 @@
 *.pyo
 .DS_Store
 .coverage
+local_settings.py
+/static
 __pycache__
+/advancedcat
+/calendars
+/mysite/*
 requirements.txt
 !/mysite/github_*
 
